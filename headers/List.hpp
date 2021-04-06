@@ -23,6 +23,15 @@ public:
         Append(val);
     }
 
+    // Constructor with the array and its length as the arguments
+    List(K *val, size_t len) {
+        if (!len)
+            throw Error("Array length can't be 0!");
+
+        for (size_t j = 0; j < len; ++j)
+            Append(val[j]);
+    }
+
     // Constructor with the first Node as the argument
     List(DS::Node<K>* newNode) {
         DS::Node<K> modifiedNode = new DS::Node<K>(newNode->value);
@@ -182,7 +191,7 @@ public:
 
     // Indexing operator
     K& operator[](size_t index) const override {
-        DS::Node<K> current = List<K>::GetHead();
+        DS::Node<K> *current = List<K>::GetHead();
         size_t i = 0;
         if (!counter || index >= counter)
             throw Error("Nonexistent key given");
