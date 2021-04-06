@@ -9,31 +9,26 @@
 // Binary tree data structure
 class BinaryTree {
 private:
-    DS::TreeNode* head;
-    size_t counter;
+    DS::TreeNode<int> *head = nullptr;
+    size_t counter = 0;
 
 public:
     // Empty constructor
-    BinaryTree(void) {
-        head = nullptr;
-        counter = 0;
-    }
+    BinaryTree(void) { }
 
     // Constructor with the first element as the argument
     BinaryTree(int val) {
-        head = nullptr;
-        counter = 0;
         append(val);
     }
 
     // Append the element to the tree
     void append(int val) {
         if (!counter) {
-            head = new DS::TreeNode(val);
+            head = new DS::TreeNode<int>(val);
             counter++;
         }
         else {
-            DS::TreeNode *next = head, *prev;
+            DS::TreeNode<int> *next = head, *prev;
             while(next != nullptr) {
                 prev = next;
                 if (val > next->value)
@@ -43,17 +38,17 @@ public:
             }
 
             if (val > prev->value)
-                prev->right = new DS::TreeNode(val, prev);
+                prev->right = new DS::TreeNode<int>(val, prev);
             else
-                prev->left = new DS::TreeNode(val, prev);
+                prev->left = new DS::TreeNode<int>(val, prev);
 
             counter++;
         }
     }
 
     // Find the element with the given value in the tree
-    DS::TreeNode* search(int val) const {
-        DS::TreeNode *next = head;
+    DS::TreeNode<int> *search(int val) const {
+        DS::TreeNode<int> *next = head;
         while(next != nullptr) {
             if (val > next->value)
                 next = next->right;
@@ -62,12 +57,24 @@ public:
             else
                 return next;
         }
-        throw Error("Not found");
+        throw Error("Not found", 404);
+    }
+
+    // Check if the value is present in the tree or not
+    bool exists(int val) const {
+        try {
+            search(val);
+        }
+        catch (const Error e) {
+            if (e.code == 404)
+                return false;
+        }
+        return true;
     }
 
     // Find the smallest value in the tree
     int minimum(void) const {
-        DS::TreeNode *next = head;
+        DS::TreeNode<int> *next = head;
         while (next->left != nullptr) {
             next = next->left;
         }
@@ -76,7 +83,7 @@ public:
 
     // Find the largest value in the tree
     int maximum(void) const {
-        DS::TreeNode *next = head;
+        DS::TreeNode<int> *next = head;
         while (next->right != nullptr) {
             next = next->right;
         }
@@ -84,9 +91,9 @@ public:
     }
 
     // Remove the element from the tree
-    DS::TreeNode* remove(DS::TreeNode* node) {
+    DS::TreeNode<int>* remove(DS::TreeNode<int>* node) {
         if (node->left == nullptr && node->right == nullptr) {
-            DS::TreeNode *p = node->prev;
+            DS::TreeNode<int> *p = node->prev;
             if (p->left == node)
                 p->left = nullptr;
             else
@@ -95,8 +102,8 @@ public:
             return p;
         }
         else if (node->left != nullptr && node->right != nullptr) {
-            DS::TreeNode *p, *pr;
-            DS::TreeNode *l = node->left, *r = node->right;
+            DS::TreeNode<int> *p, *pr;
+            DS::TreeNode<int> *l = node->left, *r = node->right;
             if (node->value < node->prev->value) {
                 // Левая ветвь
                 p = node->right;
@@ -127,8 +134,8 @@ public:
             }
         }
         else {
-            DS::TreeNode *p = node->prev;
-            DS::TreeNode *entry = node->left != nullptr ? node->left : node->right;
+            DS::TreeNode<int> *p = node->prev;
+            DS::TreeNode<int> *entry = node->left != nullptr ? node->left : node->right;
 
             p->left == node ? p->left = entry : p->right = entry;
 
@@ -138,8 +145,13 @@ public:
     }
 
     // Get the root element of the tree
-    DS::TreeNode* get_head(void) const noexcept {
+    DS::TreeNode<int>* get_head(void) const noexcept {
         return head;
+    }
+
+    // Get the amount of nodes in the current tree
+    size_t length(void) const noexcept {
+        return counter;
     }
 };
 #endif

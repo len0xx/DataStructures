@@ -51,18 +51,19 @@ namespace DS {
         KeyNode(std::string k, T v) : key {k}, value {v} { }
     };
     
+    template <typename T>
     class TreeNode {
     public:
-        int value;
+        T value;
         TreeNode *prev = nullptr;
         TreeNode *left = nullptr;
         TreeNode *right = nullptr;
 
         TreeNode(void) { }
 
-        TreeNode(int v) : value {v} { }
+        TreeNode(T v) : value {v} { }
 
-        TreeNode(int v, TreeNode* anc) : value {v}, prev {anc} { }
+        TreeNode(T v, TreeNode* anc) : value {v}, prev {anc} { }
     };
 }
 #endif
