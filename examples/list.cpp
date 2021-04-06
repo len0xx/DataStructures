@@ -18,6 +18,10 @@ int main(int argc, char **argv) {
     // Copy the existing list into a new one
     List<int> fib {fibonacci};
 
+    // Append two more numbers to the list
+    fib.Append(89);
+    fib.Append(144);
+
     // Print all of its elements to the screen
     for (auto i = 0; i < fib.Length(); ++i)
         cout << fib[i] << endl;
