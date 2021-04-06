@@ -102,12 +102,12 @@ public:
     }
 
     // Get the length of this dictionary
-    size_t Length(void) {
+    size_t Length(void) const noexcept {
         return counter;
     }
 
     // Get the Node with the given value
-    DS::KeyNode<N>* Get(N val) {
+    DS::KeyNode<N>* Get(N val) const {
         DS::KeyNode<N>* current = head;
 
         while (current->next) {
@@ -122,7 +122,7 @@ public:
     }
 
     // Get the first element of the dictionary
-    DS::KeyNode<N>* GetHead() {
+    DS::KeyNode<N>* GetHead() const noexcept {
         return head;
     }
 
@@ -150,7 +150,7 @@ public:
     }
 
     // Check if the element with the given key exists in dictionary
-    bool KeyExists(std::string key) {
+    bool KeyExists(std::string key) const {
         bool flag = false;
         DS::KeyNode<N>* current = head;
 
@@ -165,7 +165,7 @@ public:
     }
 
     // Indexing operator
-    N& operator[](size_t index) {
+    N& operator[](size_t index) const {
         DS::KeyNode<N>* current = head;
         size_t i = 0;
         if (!(*this).Length() || index >= (*this).Length())
@@ -181,7 +181,7 @@ public:
     }
 
     // Mapping operator (Get the element by its key)
-    N& operator[](std::string search) {
+    N& operator[](std::string search) const {
         DS::KeyNode<N>* current = head;
         if (!KeyExists(search))
             throw Error("Nonexistent key given");

@@ -50,12 +50,12 @@ public:
     }
 
     // Get the length of the stack
-    size_t length(void) {
+    size_t length(void) const noexcept {
         return counter;
     }
 
     // Get the first element in the stack
-    DS::Node<K> *get_head(void) {
+    DS::Node<K> *get_head(void) const noexcept {
         return head;
     }
 };

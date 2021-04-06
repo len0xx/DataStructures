@@ -52,7 +52,7 @@ public:
     }
 
     // Find the element with the given value in the tree
-    DS::TreeNode* search(int val) {
+    DS::TreeNode* search(int val) const {
         DS::TreeNode *next = head;
         while(next != nullptr) {
             if (val > next->value)
@@ -66,7 +66,7 @@ public:
     }
 
     // Find the smallest value in the tree
-    int minimum(void) {
+    int minimum(void) const {
         DS::TreeNode *next = head;
         while (next->left != nullptr) {
             next = next->left;
@@ -75,7 +75,7 @@ public:
     }
 
     // Find the largest value in the tree
-    int maximum(void) {
+    int maximum(void) const {
         DS::TreeNode *next = head;
         while (next->right != nullptr) {
             next = next->right;
@@ -138,7 +138,7 @@ public:
     }
 
     // Get the root element of the tree
-    DS::TreeNode* get_head(void) {
+    DS::TreeNode* get_head(void) const noexcept {
         return head;
     }
 };
