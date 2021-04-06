@@ -1,36 +1,32 @@
 #include <iostream>
 #include <cstdint>
 #include <string>
-#ifndef METACLASSES
 #include "metaclasses.hpp"
-#endif
 
-#define DICTIONARY 1
-
-using namespace std;
+#ifndef _DICTIONARY_H_
+#define _DICTIONARY_H_
 
 // Dictionary data structure
 template <typename N>
 class Dictionary {
 private:
-    DS::KeyNode<N>* head = new DS::KeyNode<N>();
-    DS::KeyNode<N>* last = head;
+    DS::KeyNode<N>* head = nullptr;
+    DS::KeyNode<N>* last = nullptr;
     size_t counter = 0;
 
 public:
     // Empty constructor
-    Dictionary<N>() { }
+    Dictionary<N>(void) { }
 
     // Constructor with the first element as the argument
-    Dictionary(N val) {
-        Append(val);
+    Dictionary(std::string k, N val) {
+        Append(k, val);
     }
 
     // Constructor with the first Node as the argument
     Dictionary(DS::KeyNode<N>* newNode) {
-        DS::KeyNode<N> *modifiedNode = new DS::KeyNode<N>(newNode->value);
-        head = modifiedNode;
-        last = modifiedNode;
+        DS::KeyNode<N> *modifiedNode = new DS::KeyNode<N>(newNode->key, newNode->value);
+        head = last = modifiedNode;
         counter++;
     }
 
@@ -52,16 +48,15 @@ public:
     }
 
     // Append the element to the dictionary with key and value as arguments
-    void Append(string key, N val) {
+    void Append(std::string key, N val) {
         if (KeyExists(key))
-            throw Error("An element with such key already exists");
+            throw Error("An element with this key already exists");
 
-        DS::KeyNode<N>* newNode, * current;
+        DS::KeyNode<N>* newNode, *current;
         newNode = new DS::KeyNode<N>(key, val);
 
         if (!counter) {
-            head = newNode;
-            last = newNode;
+            head = last = newNode;
         }
         else {
             current = last;
@@ -83,13 +78,12 @@ public:
             if (head != NULL)
                 return head->next;
             else {
-                head = new DS::KeyNode<N>();
-                last = head;
+                head = last = new DS::KeyNode<N>();
                 return head;
             }
         }
         else {
-            DS::KeyNode<N>* current = head;
+            DS::KeyNode<N> *current = head;
 
             while (current->next && current->next != entry)
                 current = current->next;
@@ -156,7 +150,7 @@ public:
     }
 
     // Check if the element with the given key exists in dictionary
-    bool KeyExists(string key) {
+    bool KeyExists(std::string key) {
         bool flag = false;
         DS::KeyNode<N>* current = head;
 
@@ -187,7 +181,7 @@ public:
     }
 
     // Mapping operator (Get the element by its key)
-    N& operator[](string search) {
+    N& operator[](std::string search) {
         DS::KeyNode<N>* current = head;
         if (!KeyExists(search))
             throw Error("Nonexistent key given");
@@ -203,3 +197,4 @@ public:
             throw Error("Not found");
     }
 };
+#endif

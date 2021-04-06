@@ -5,28 +5,20 @@
 #include <cstring>
 #include <stdio.h>
 
-#define METACLASSES 1
-
-using namespace std;
+#ifndef _METACLASSES_H_
+#define _METACLASSES_H_
 
 // A basic error class for throwing exceptions
 class Error {
     public:
-    string text;
+    std::string text = "";
     int code = 0;
 
-    Error(string txt) {
-        text = txt;
-    }
+    Error(std::string txt) : text {txt} { }
 
-    Error(int i) {
-        code = i;
-    }
+    Error(int i) : code {i} { }
 
-    Error(string txt, int i) {
-        text = txt;
-        code = i;
-    }
+    Error(std::string txt, int i) : text {txt}, code {i} { }
 };
 
 // Data structure namespace
@@ -35,75 +27,42 @@ namespace DS {
     class Node {
     public:
         T value;
-        Node *next;
+        Node *next = nullptr;
+        Node *prev = nullptr;
 
-        Node(void) {
-            next = nullptr;
-        }
+        Node(void) { }
 
-        Node(T v) {
-            value = v;
-            next = nullptr;
-        }
+        Node(T v) : value {v} { }
 
-        Node(T v, Node* anc) {
-            value = v;
-            next = anc;
-        }
+        Node(T v, Node* anc) : value {v}, next {anc} { }
     };
     
     template <typename T>
     class KeyNode {
     public:
         T value;
-        string key;
-        KeyNode *next;
+        std::string key;
+        KeyNode *next = nullptr;
 
-        KeyNode(void) {
-            next = nullptr;
-        }
+        KeyNode(void) { }
 
-        KeyNode(T v) {
-            value = v;
-            next = nullptr;
-        }
-
-        KeyNode(T v, KeyNode* anc) {
-            value = v;
-            next = anc;
-        }
-
-        KeyNode(string k, T v) {
-            key = k;
-            value = v;
-        }
+        KeyNode(T v, KeyNode* anc) : value {v}, next {anc} { }
+        
+        KeyNode(std::string k, T v) : key {k}, value {v} { }
     };
     
     class TreeNode {
     public:
         int value;
-        TreeNode *prev;
-        TreeNode *left;
-        TreeNode *right;
+        TreeNode *prev = nullptr;
+        TreeNode *left = nullptr;
+        TreeNode *right = nullptr;
 
-        TreeNode(void) {
-            prev = nullptr;
-            left = nullptr;
-            right = nullptr;
-        }
+        TreeNode(void) { }
 
-        TreeNode(int v) {
-            value = v;
-            prev = nullptr;
-            left = nullptr;
-            right = nullptr;
-        }
+        TreeNode(int v) : value {v} { }
 
-        TreeNode(int v, TreeNode* anc) {
-            value = v;
-            prev = anc;
-            left = nullptr;
-            right = nullptr;
-        }
+        TreeNode(int v, TreeNode* anc) : value {v}, prev {anc} { }
     };
 }
+#endif

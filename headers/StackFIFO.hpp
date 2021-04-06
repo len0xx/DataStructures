@@ -1,13 +1,10 @@
 #include <iostream>
 #include <cstdint>
 #include <string>
-#ifndef METACLASSES
 #include "metaclasses.hpp"
-#endif
 
-#define STACKFIFO 1
-
-using namespace std;
+#ifndef _STACK_FIFO_H_
+#define _STACK_FIFO_H_
 
 template <typename K>
 class StackFIFO {
@@ -34,7 +31,7 @@ public:
             return ++counter;
         }
         else {
-            auto entry = new DS::Node<K>(val);
+            DS::Node<K> entry = new DS::Node<K>(val);
             last->next = entry;
             last = entry;
             return ++counter;
@@ -45,8 +42,8 @@ public:
     K *pop(void) {
         if (!counter)
             throw Error("The stack is empty");
-            
-        auto ret = head;
+        
+        DS::Node<K> ret = head;
         head = head->next;
         counter--;
         return &ret->value;
@@ -62,3 +59,4 @@ public:
         return head;
     }
 };
+#endif

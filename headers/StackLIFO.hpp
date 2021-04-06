@@ -1,13 +1,10 @@
 #include <iostream>
 #include <cstdint>
 #include <string>
-#ifndef METACLASSES
 #include "metaclasses.hpp"
-#endif
 
-#define STACKLIFO 1
-
-using namespace std;
+#ifndef _STACK_LIFO_H_
+#define _STACK_LIFO_H_
 
 // Last-in-first-out stack data structure
 template <typename K>
@@ -35,7 +32,7 @@ public:
             return ++counter;
         }
         else {
-            auto entry = new DS::Node<K>(val);
+            DS::Node<K> entry = new DS::Node<K>(val);
             last->next = entry;
             last = entry;
             return ++counter;
@@ -68,3 +65,4 @@ public:
         return head;
     }
 };
+#endif

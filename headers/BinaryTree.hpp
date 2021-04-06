@@ -1,19 +1,16 @@
 #include <iostream>
 #include <cstdint>
 #include <string>
-#ifndef METACLASSES
 #include "metaclasses.hpp"
-#endif
 
-#define BINARY_TREE 1
-
-using namespace std;
+#ifndef _BINARY_TREE_H
+#define _BINARY_TREE_H
 
 // Binary tree data structure
 class BinaryTree {
 private:
     DS::TreeNode* head;
-    uint64_t counter;
+    size_t counter;
 
 public:
     // Empty constructor
@@ -145,3 +142,4 @@ public:
         return head;
     }
 };
+#endif

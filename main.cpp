@@ -1,12 +1,9 @@
 #include <stdio.h>
 #include <iostream>
-#ifndef METACLASSES
-#include "metaclasses.hpp"
-#endif
-
-#ifndef LIST
-#include "List.hpp"
-#endif
+#include "headers/metaclasses.hpp"
+#include "headers/List.hpp"
+#include "headers/Dictionary.hpp"
+#include "headers/StackLIFO.hpp"
 
 using namespace std;
 
@@ -21,10 +18,6 @@ int main(int argc, char **argv) {
     fibonacci.Append(8);
     fibonacci.Append(13);
     fibonacci.Append(21);
-
-    // for (auto i = 0; i < fibonacci.Length(); ++i) {
-    //     cout << fibonacci[i] << endl;
-    // }
 
     fibonacci.Clear();
 
