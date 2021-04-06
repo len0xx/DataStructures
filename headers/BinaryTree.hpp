@@ -28,6 +28,9 @@ public:
             counter++;
         }
         else {
+            if (exists(val))
+                throw Error("An element with this value already exists in a Tree");
+
             DS::TreeNode<int> *next = head, *prev;
             while(next != nullptr) {
                 prev = next;
