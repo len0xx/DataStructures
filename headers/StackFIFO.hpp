@@ -43,7 +43,7 @@ public:
         if (!counter)
             throw Error("The stack is empty");
         
-        DS::Node<K> ret = head;
+        DS::Node<K> *ret = head;
         head = head->next;
         counter--;
         return &ret->value;
