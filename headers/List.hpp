@@ -1,18 +1,14 @@
 #include <iostream>
 #include <cstdint>
 #include <string>
-#include "stdarg.h"
-#ifndef METACLASSES
-#include "metaclasses.hpp"
-#endif
+#include "ListInterface.hpp"
 
-#define LIST 1
+#ifndef _LIST_H_
+#define _LIST_H_
 
-using namespace std;
-
-// Single-linked list data structure
+// Single-linked list data structure which implements ListInterface
 template <typename K>
-class List {
+class List : public ListInterface<K> {
 private:
     DS::Node<K>* head = nullptr;
     DS::Node<K>* last = nullptr;
@@ -20,7 +16,7 @@ private:
 
 public:
     // Empty constructor
-    List() { }
+    List(void) { }
 
     // Constructor with the first element as the argument
     List(K val) {
@@ -29,18 +25,16 @@ public:
 
     // Constructor with the first Node as the argument
     List(DS::Node<K>* newNode) {
-        auto modifiedNode = new DS::Node<K>(newNode->value);
-        head = modifiedNode;
-        last = modifiedNode;
+        DS::Node<K> modifiedNode = new DS::Node<K>(newNode->value);
+        head = last = modifiedNode;
         counter++;
     }
 
     // Constructor for strings
     List(const char* str) {
-        uint32_t i = 0;
-        auto newNode = new DS::Node<K>(str[i++]);
-        head = newNode;
-        last = newNode;
+        size_t i = 0;
+        DS::Node<K> newNode = new DS::Node<K>(str[i++]);
+        head = last = newNode;
         counter++;
         while(str[i] != '\0') {
             Append(str[i++]);
@@ -49,7 +43,7 @@ public:
 
     // Constructor for creating copies
     List(const List& anotherList) {
-        auto current = anotherList.GetHead();
+        DS::Node<K> *current = anotherList.GetHead();
 
         while (current->next) {
             Append(current->value);
@@ -65,13 +59,12 @@ public:
     }
 
     // Append new element to the list with the value
-    void Append(K val) {
-        DS::Node<K>* newNode, * current;
+    void Append(K val) override {
+        DS::Node<K>* newNode, *current;
         newNode = new DS::Node<K>(val);
 
         if (!counter) {
-            head = newNode;
-            last = newNode;
+            head = last = newNode;
         }
         else {
             current = last;
@@ -84,14 +77,13 @@ public:
     }
 
     // Append new element to the list with the Node
-    void Append(DS::Node<K>* newNode) {
-        DS::Node<K>* current, * modifiedNode;
+    void Append(DS::Node<K> *newNode) override {
+        DS::Node<K>* current, *modifiedNode;
 
-        modifiedNode = new DS::Node<K>(newNode->value, newNode->key);
+        modifiedNode = new DS::Node<K>(newNode->value);
 
         if (!counter) {
-            head = modifiedNode;
-            last = modifiedNode;
+            head = last = modifiedNode;
         }
         else {
             current = last;
@@ -104,12 +96,12 @@ public:
     }
 
     // Duplicate the Node
-    void Duplicate(DS::Node<K>* newNode) {
+    void Duplicate(DS::Node<K>* newNode) override {
         Append(newNode);
     }
 
     // Remove the Node
-    DS::Node<K>* Remove(DS::Node<K>* entry) {
+    DS::Node<K>* Remove(DS::Node<K>* entry) override {
 
         if (head == entry) {
             head = entry->next;
@@ -118,13 +110,12 @@ public:
             if (head != NULL)
                 return head->next;
             else {
-                head = new DS::Node<K>();
-                last = head;
+                head = last = new DS::Node<K>();
                 return head;
             }
         }
         else {
-            auto current = head;
+            DS::Node<K> *current = head;
 
             while (current->next && current->next != entry)
                 current = current->next;
@@ -143,12 +134,12 @@ public:
     }
 
     // Get the length of the list
-    size_t Length(void) const noexcept {
+    size_t Length(void) const noexcept override {
         return counter;
     }
 
     // Find a first Node with the given value
-    DS::Node<K>* Get(K val) const {
+    DS::Node<K>* Get(K val) const override {
         auto current = head;
 
         while (current->next) {
@@ -162,7 +153,7 @@ public:
             throw Error("Could not find an entry", 404);
     }
 
-    DS::Node<K>* GetHead() const noexcept {
+    DS::Node<K>* GetHead() const noexcept override {
         return head;
     }
 
@@ -190,8 +181,8 @@ public:
     }
 
     // Indexing operator
-    K& operator[](size_t index) const {
-        auto current = List<K>::GetHead();
+    K& operator[](size_t index) const override {
+        DS::Node<K> current = List<K>::GetHead();
         size_t i = 0;
         if (!counter || index >= counter)
             throw Error("Nonexistent key given");
@@ -206,7 +197,7 @@ public:
     }
 
     // Check if the value is present in the list or not
-    bool Exists(K entry) const {
+    bool Exists(K entry) const override {
         auto flag = false;
         auto current = head;
 
@@ -220,3 +211,4 @@ public:
         return flag;
     }
 };
+#endif
