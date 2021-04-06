@@ -7,26 +7,20 @@
 
 using namespace std;
 
+const size_t ARR_SIZE = 10;
+
 int main(int argc, char **argv) {
-    List<int> fibonacci{};
 
-    fibonacci.Append(1);
-    fibonacci.Append(1);
-    fibonacci.Append(2);
-    fibonacci.Append(3);
-    fibonacci.Append(5);
-    fibonacci.Append(8);
-    fibonacci.Append(13);
-    fibonacci.Append(21);
+    // Create the basic C-style array of 10 integers
+    int f_arr[ARR_SIZE] {1, 1, 2, 3, 5, 8, 13, 21, 34, 55};
 
-    fibonacci.Clear();
+    // Construct a linked list from the previously declared array
+    List<int> fibonacci(f_arr, ARR_SIZE);
 
-    for (auto i = 0; i < 10; ++i) {
-        fibonacci.Append(i * i);
-    }
-
+    // Construct a copy of an existing list
     List<int> fib {fibonacci};
 
+    // Print all of its elements to the screen
     for (auto i = 0; i < fib.Length(); ++i) {
         cout << fib[i] << endl;
     }
