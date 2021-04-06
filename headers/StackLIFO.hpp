@@ -32,7 +32,7 @@ public:
             return ++counter;
         }
         else {
-            DS::Node<K> entry = new DS::Node<K>(val);
+            DS::Node<K> *entry = new DS::Node<K>(val);
             last->next = entry;
             last = entry;
             return ++counter;
