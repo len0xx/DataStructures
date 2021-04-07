@@ -10,8 +10,8 @@
 template <typename N>
 class Dictionary {
 private:
-    DS::KeyNode<N>* head = nullptr;
-    DS::KeyNode<N>* last = nullptr;
+    DS::KeyNode<N> *head = nullptr;
+    DS::KeyNode<N> *last = nullptr;
     size_t counter = 0;
 
 public:
@@ -24,7 +24,7 @@ public:
     }
 
     // Constructor with the first Node as the argument
-    Dictionary(DS::KeyNode<N>* newNode) {
+    Dictionary(DS::KeyNode<N> *newNode) {
         DS::KeyNode<N> *modifiedNode = new DS::KeyNode<N>(newNode->key, newNode->value);
         head = last = modifiedNode;
         counter++;
@@ -52,7 +52,7 @@ public:
         if (KeyExists(key))
             throw Error("An element with this key already exists");
 
-        DS::KeyNode<N>* newNode, *current;
+        DS::KeyNode<N> *newNode, *current;
         newNode = new DS::KeyNode<N>(key, val);
 
         if (!counter) {
@@ -69,7 +69,7 @@ public:
     }
 
     // Remove the given Node from the dictionary
-    DS::KeyNode<N>* Remove(DS::KeyNode<N>* entry) {
+    DS::KeyNode<N> *Remove(DS::KeyNode<N> *entry) {
 
         if (head == entry) {
             head = entry->next;
@@ -107,8 +107,8 @@ public:
     }
 
     // Get the Node with the given value
-    DS::KeyNode<N>* Get(N val) const {
-        DS::KeyNode<N>* current = head;
+    DS::KeyNode<N> *Get(N val) const {
+        DS::KeyNode<N> *current = head;
 
         while (current->next) {
             if (current->value == val)
@@ -122,13 +122,13 @@ public:
     }
 
     // Get the first element of the dictionary
-    DS::KeyNode<N>* GetHead() const noexcept {
+    DS::KeyNode<N> *GetHead() const noexcept {
         return head;
     }
 
     // Remove all the elements from the dictionary
     void Clear(void) {
-        DS::KeyNode<N>* current;
+        DS::KeyNode<N> *current;
         if (counter == 1) current = head;
         else current = head->next;
 
@@ -152,7 +152,9 @@ public:
     // Check if the element with the given key exists in dictionary
     bool KeyExists(std::string key) const {
         bool flag = false;
-        DS::KeyNode<N>* current = head;
+        DS::KeyNode<N> *current = head;
+
+        if (!counter) return false;
 
         while (current->next) {
             if (current->key == key)
@@ -166,7 +168,7 @@ public:
 
     // Indexing operator
     N& operator[](size_t index) const {
-        DS::KeyNode<N>* current = head;
+        DS::KeyNode<N> *current = head;
         size_t i = 0;
         if (!(*this).Length() || index >= (*this).Length())
             throw Error("Nonexistent key given");
@@ -182,7 +184,7 @@ public:
 
     // Mapping operator (Get the element by its key)
     N& operator[](std::string search) const {
-        DS::KeyNode<N>* current = head;
+        DS::KeyNode<N> *current = head;
         if (!KeyExists(search))
             throw Error("Nonexistent key given");
 
