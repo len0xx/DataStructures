@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <iostream>
 #include "../headers/metaclasses.hpp"
-#include "../headers/BinaryTree.hpp"
+#include "../headers/BinarySearchTree.hpp"
 
 using namespace std;
 
 int main(int argc, char **argv) {
 
     // Initialize a tree with the root element of 820
-    BinaryTree theTree{820};
+    BinarySearchTree theTree{820};
 
     // Just a number to check its presence
     int anEntry = 384;

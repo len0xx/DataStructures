@@ -3,21 +3,21 @@
 #include <string>
 #include "metaclasses.hpp"
 
-#ifndef _BINARY_TREE_H
-#define _BINARY_TREE_H
+#ifndef _BINARY_SEARCH_TREE_H
+#define _BINARY_SEARCH_TREE_H
 
 // Binary tree data structure
-class BinaryTree {
+class BinarySearchTree {
 private:
     DS::TreeNode<int> *head = nullptr;
     size_t counter = 0;
 
 public:
     // Empty constructor
-    BinaryTree(void) { }
+    BinarySearchTree(void) { }
 
     // Constructor with the first element as the argument
-    BinaryTree(int val) {
+    BinarySearchTree(int val) {
         append(val);
     }
 
