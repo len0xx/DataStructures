@@ -21,8 +21,8 @@ public:
     // Empty constructor
     SimpleString(void) = delete;
 
-    // Constructor for strings
-    SimpleString(const char* str) {
+    // Construct strings from char*
+    SimpleString(char* str) {
         head = last = nullptr;
         counter = 0;
         size_t i = 0;
@@ -39,8 +39,12 @@ public:
         }
     }
 
+    // Construct strings from std::string
     SimpleString(std::string thestr) : SimpleString(thestr.c_str()) { }
 
+    // Construct strings from const char*
+    SimpleString(const char *thestr) : SimpleString(const_cast<char*>(thestr)) { }
+  
     // Destructor
     ~SimpleString() {
         Character *thenext, *current = head;
@@ -62,15 +66,13 @@ public:
         return counter;
     }
 
-    // Print the string to the string
-    void print(void) const noexcept {
-        Character *current = head;
-        while (current->next) {
-            std::cout << current->value;
-            current = current->next;
-        }
-
-        std::cout << current->value;
+    // Convert SimpleString to char[]
+    operator char*(void) const {
+        char *result = new char[length() + 1];
+        size_t i {};
+        for (i = 0; i < length(); result[i] = (*this)[i], i++);
+        result[i] = '\0';
+        return result;
     }
 
     // Indexing operator

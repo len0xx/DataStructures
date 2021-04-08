@@ -7,12 +7,11 @@ using namespace std;
 
 int main(int argc, char **argv) {
 
-    string aname = "Prokhor";
+    char aname[] = "Prokhor";
 
-    SimpleString myname = aname;
+    SimpleString myname = "TheProkhor";
 
-    myname.print();
-    cout << endl;
+    cout << (char *) myname << endl;
 
     cout << "There are " << myname.length() << " symbols" << endl;
 
