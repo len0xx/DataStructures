@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <iostream>
 #include "../headers/metaclasses.hpp"
-#include "../headers/StackLIFO.hpp"
-#include "../headers/StackFIFO.hpp"
+#include "../headers/Stack.hpp"
+#include "../headers/Queue.hpp"
 
 using namespace std;
 
 int main(int argc, char **argv) {
     // Initializing the LIFO Stack
-    StackLIFO<unsigned int> addresses;
+    Stack<unsigned int> addresses;
 
     // Initializing the FIFO Stack
-    StackFIFO<char> serial_port;
+    Queue<char> serial_port;
 
     // Inserting some elements to the LIFO stack
     addresses.insert(0x02FA); // 762
