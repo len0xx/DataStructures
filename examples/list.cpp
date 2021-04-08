@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <iostream>
-#include "headers/metaclasses.hpp"
-#include "headers/List.hpp"
+#include "../headers/metaclasses.hpp"
+#include "../headers/List.hpp"
 
 using namespace std;
 
@@ -19,12 +19,14 @@ int main(int argc, char **argv) {
     List<int> fib {fibonacci};
 
     // Append two more numbers to the list
-    fib.Append(89);
-    fib.Append(144);
+    fib.append(89);
+    fib.append(144);
 
     // Print all of its elements to the screen
-    for (auto i = 0; i < fib.Length(); ++i)
-        cout << fib[i] << endl;
+    // for (auto i = 0; i < fib.Length(); ++i)
+    //     cout << fib[i] << endl;
+
+    cout << "Index of 5: " << fib.index(5) << endl;
 
     return 0;
 }
