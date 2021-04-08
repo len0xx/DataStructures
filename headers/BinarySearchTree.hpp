@@ -6,7 +6,7 @@
 #ifndef _BINARY_SEARCH_TREE_H
 #define _BINARY_SEARCH_TREE_H
 
-// Binary tree data structure
+// Binary search tree data structure
 class BinarySearchTree {
 
 using Node = DS::TreeNode<int>;
