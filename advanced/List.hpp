@@ -176,7 +176,7 @@ public:
     }
 
     // Remove all the elements from the list
-    void clear(void) {
+    void clear(void) override {
         Node *current;
         if (counter == 1) current = head;
         else current = head->next;
@@ -200,7 +200,7 @@ public:
 
     // Indexing operator
     K& operator[](size_t index) const override {
-        Node *current = ComparableList<K>::get_head();
+        Node *current = head;
         size_t i = 0;
         if (!counter || index >= counter)
             throw Error("Nonexistent key given");
@@ -246,6 +246,9 @@ public:
     }
 
     K min(void) const {
+        if (!counter)
+            throw Error("This list is empty! Couldn't find the minimum value");
+
         Node *current = head;
         K result = current->value;
 
@@ -261,6 +264,9 @@ public:
     }
     
     K max(void) const {
+        if (!counter)
+            throw Error("This list is empty! Couldn't find the maxumim value");
+
         Node *current = head;
         K result = current->value;
         
