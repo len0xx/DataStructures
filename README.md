@@ -1,4 +1,4 @@
-# DataStructures.cpp
+# DataStructures
 Basic data structures written in C++
 
 ## Examples
