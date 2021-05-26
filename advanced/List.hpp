@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstdint>
-#include <string>
 #include "../headers/ListInterface.hpp"
 
 // ! The code written in this file is not supported in C++ standart yet (at least for now)

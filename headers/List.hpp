@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstdint>
-#include <string>
 #include "ListInterface.hpp"
 
 #ifndef _LIST_H_

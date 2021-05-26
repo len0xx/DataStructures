@@ -6,8 +6,8 @@ Basic data structures written in C++
 ### Single-linked list
 
 ```c++
-#include <stdio.h>
 #include <iostream>
+#include <string>
 #include "headers/List.hpp"
 
 int main(int argc, char **argv) {
@@ -28,6 +28,33 @@ int main(int argc, char **argv) {
         std::cout << "I can also write programs in Rust" << std::endl;
     else
         std::cout << "But I can't write programs in Rust :(" << std::endl;
+
+    return 0;
+}
+```
+### LIFO Stack
+
+```c++
+#include <iostream>
+#include <string>
+#include "headers/Stack.hpp"
+
+int main(int argc, char **argv) {
+
+    Stack<std::string> taskManager {};
+
+    taskManager.insert("svhost.exe");
+    taskManager.insert("exporer.exe");
+    taskManager.insert("VSCode.exe");
+    taskManager.insert("Terminal.exe");
+    taskManager.insert("Brave.exe");
+    taskManager.insert("iTunes.exe");
+
+    std::cout << "There are currently " << taskManager.length() << " proccesses running" << std::endl;
+
+    std::cout << "Most recently opened program was: " << *(taskManager.pop()) << std::endl;
+
+    std::cout << "Now there is one less: " << taskManager.length() << std::endl;
 
     return 0;
 }
