@@ -19,10 +19,7 @@ public:
     // Append new element to the list with the Node
     virtual void append(DS::Node<K> *newNode) = 0;
 
-    // Duplicate the Node
-    virtual void duplicate(DS::Node<K> *newNode) = 0;
-
-    // Remove the Node
+    // Remove the element in the list by Node and return new element at this index
     virtual DS::Node<K> *remove(DS::Node<K> *entry) = 0;
 
     // Get the length of the list

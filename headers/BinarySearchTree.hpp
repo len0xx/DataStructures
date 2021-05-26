@@ -35,7 +35,7 @@ public:
                 throw Error("An element with this value already exists in a Tree");
 
             Node *next = head, *prev;
-            while(next != nullptr) {
+            while (next != nullptr) {
                 prev = next;
                 if (val > next->value)
                     next = next->right;
@@ -55,6 +55,9 @@ public:
     // Find the element with the given value in the tree
     Node *search(int val) const {
         Node *next = head;
+        if (!counter)
+            throw Error("The tree is empty", 404);
+            
         while(next != nullptr) {
             if (val > next->value)
                 next = next->right;

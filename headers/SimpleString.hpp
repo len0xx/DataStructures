@@ -69,8 +69,7 @@ public:
     // Convert SimpleString to char[]
     operator char*(void) const {
         char *result = new char[length() + 1];
-        size_t i {};
-        for (i = 0; i < length(); result[i] = (*this)[i], i++);
+        for (size_t i = 0; i < length(); result[i] = (*this)[i], i++);
         result[i] = '\0';
         return result;
     }

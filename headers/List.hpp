@@ -28,21 +28,11 @@ public:
 
     // Constructor with the array and its length as the arguments
     List(K *val, size_t len) {
-        if (!len)
-            throw Error("Array length can't be 0!");
-
         for (size_t j = 0; j < len; ++j)
             append(val[j]);
     }
 
-    // Constructor with the first Node as the argument
-    List(Node *newNode) {
-        Node modifiedNode = new Node(newNode->value);
-        head = last = modifiedNode;
-        counter++;
-    }
-
-    // Constructor for creating copies
+    // Copy constructor
     List(const List& anotherList) {
         Node *current = anotherList.get_head();
 
@@ -69,8 +59,6 @@ public:
         }
         else {
             current = last;
-            while (current->next)
-                current = current->next;
             current->next = newNode;
             last = newNode;
         }
@@ -88,27 +76,20 @@ public:
         }
         else {
             current = last;
-            while (current->next)
-                current = current->next;
             current->next = modifiedNode;
             last = modifiedNode;
         }
         counter++;
     }
 
-    // Duplicate the Node
-    void duplicate(Node *newNode) override {
-        append(newNode);
-    }
-
-    // Remove the Node
+    // Remove the element by Node and return new element at this index
     Node *remove(Node *entry) override {
 
         if (head == entry) {
             head = entry->next;
             delete entry;
             counter--;
-            if (head != NULL)
+            if (head != nullptr)
                 return head->next;
             else {
                 head = last = new Node();
@@ -121,7 +102,7 @@ public:
             while (current->next && current->next != entry)
                 current = current->next;
 
-            if (current->next != NULL) {
+            if (current->next != nullptr) {
                 current->next = entry->next;
                 if (entry == last)
                     last = current;
@@ -202,6 +183,8 @@ public:
         auto flag = false;
         Node *current = head;
 
+        if (!counter) return false;
+
         while (current->next) {
             if (current->value == entry)
                 return true;
@@ -215,6 +198,8 @@ public:
     size_t index(K entry) const override {
         Node *current = head;
         size_t i {};
+
+        if (!counter) throw Error("The list is empty");
 
         while (current->next) {
             if (current->value == entry)
