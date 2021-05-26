@@ -113,11 +113,6 @@ public:
         counter++;
     }
 
-    // Duplicate the Node
-    void duplicate(Node *newNode) override {
-        append(newNode);
-    }
-
     // Remove the Node
     Node *remove(Node *entry) override {
 
