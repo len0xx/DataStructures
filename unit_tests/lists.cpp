@@ -1,6 +1,5 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include <stdio.h>
 #include <iostream>
 #include "../headers/metaclasses.hpp"
 #include "../headers/List.hpp"
