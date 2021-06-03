@@ -32,7 +32,44 @@ int main(int argc, char **argv) {
     return 0;
 }
 ```
-### LIFO Stack
+### Binary Search Tree
+
+```c++
+#include <iostream>
+#include <string>
+#include "headers/BinarySearchTree.hpp"
+
+int main(int argc, char **argv) {
+
+    BinarySearchTree tree {261};
+
+    tree.append(102);
+    tree.append(821);
+    tree.append(42);
+    tree.append(573);
+    tree.append(171);
+    tree.append(290);
+    tree.append(81);
+    tree.append(200);
+    tree.append(527);
+    tree.append(301);
+
+    std::cout << "The smallest value of the tree is: " << tree.minimum() << std::endl;
+
+    std::cout << "The largest value of the tree is: " << tree.maximum() << std::endl;
+
+    std::cout << "There are " << tree.length() << " nodes in the tree" << std::endl;
+
+    if (tree.exists(10)) {
+        std::cout << "10 is present in the tree" << std::endl;
+    } else {
+        std::cout << "10 is not present in the tree" << std::endl;
+    }
+
+    return 0;
+}
+```
+### LIFO Stack (based on the linked list)
 
 ```c++
 #include <iostream>

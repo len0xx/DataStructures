@@ -6,7 +6,7 @@
 #ifndef _STACK_H_
 #define _STACK_H_
 
-// Last-in-first-out stack data structure
+// Last-in-first-out stack based on the linked list
 template <typename K>
 class Stack {
 

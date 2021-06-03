@@ -84,6 +84,10 @@ public:
     // Find the smallest value in the tree
     int minimum(void) const {
         Node *next = head;
+
+        if (!counter)
+            throw Error("The tree is empty", 404);
+
         while (next->left != nullptr) {
             next = next->left;
         }
@@ -93,6 +97,10 @@ public:
     // Find the largest value in the tree
     int maximum(void) const {
         Node *next = head;
+
+        if (!counter)
+            throw Error("The tree is empty", 404);
+
         while (next->right != nullptr) {
             next = next->right;
         }

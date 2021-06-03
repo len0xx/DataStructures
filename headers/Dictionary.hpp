@@ -6,7 +6,7 @@
 #ifndef _DICTIONARY_H_
 #define _DICTIONARY_H_
 
-// Dictionary data structure
+// Dictionary data structure based on the linked list
 template <typename N>
 class Dictionary {
 

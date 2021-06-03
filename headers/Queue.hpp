@@ -6,6 +6,7 @@
 #ifndef _QUEUE_H_
 #define _QUEUE_H_
 
+// Queue class based on the linked list
 template <typename K>
 class Queue {
     
