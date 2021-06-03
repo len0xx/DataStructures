@@ -18,7 +18,7 @@ private:
 
 public:
 
-    // Empty constructor
+    // Default constructor
     SimpleString(void) = delete;
 
     // Construct strings from char*

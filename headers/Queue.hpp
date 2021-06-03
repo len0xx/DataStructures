@@ -16,7 +16,7 @@ private:
     size_t counter;
 
 public:
-    // Empty constructor
+    // Default constructor
     Queue(void) {
         head = last = nullptr;
         counter = 0;

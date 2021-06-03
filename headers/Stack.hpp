@@ -17,7 +17,7 @@ private:
     size_t counter;
 
 public:
-    // Empty constructor
+    // Default constructor
     Stack(void) {
         head = last = nullptr;
         counter = 0;

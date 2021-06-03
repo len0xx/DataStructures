@@ -17,7 +17,7 @@ private:
     size_t counter = 0;
 
 public:
-    // Empty constructor
+    // Default constructor
     List(void) { }
 
     // Constructor with the first element as the argument
