@@ -217,7 +217,7 @@ public:
         List<K> *res = new List<K>(left);
 
         if (right.length()) {
-            for (size_t i {0}; i < right.length(); ++i)
+            for (size_t i {}; i < right.length(); ++i)
                 res->append(right[i]);
         }
         
