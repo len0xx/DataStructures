@@ -194,6 +194,7 @@ public:
         return flag;
     }
 
+    // Get the index of the entry
     size_t index(K entry) const override {
         Node *current = head;
         size_t i {};
@@ -212,10 +213,27 @@ public:
             throw Error("Could not find an entry", 404);
     }
 
-    List<K> friend operator+(const List &left, const List &right) {
-        List<K> res = left;
+    List<K> friend &operator+(const List &left, const List &right) {
+        List<K> *res = new List<K>(left);
 
-        return res;
+        if (right.length()) {
+            for (size_t i {0}; i < right.length(); ++i)
+                res->append(right[i]);
+        }
+        
+        return *res;
+    }
+
+    void friend operator-(const List &left, const List &right) {
+        throw std::runtime_error{"Subtraction operator is not supported for Lists"};
+    }
+
+    void friend operator*(const List &left, const List &right) {
+        throw std::runtime_error{"Multiplication operator is not supported for Lists"};
+    }
+
+    void friend operator/(const List &left, const List &right) {
+        throw std::runtime_error{"Division operator is not supported for Lists"};
     }
 };
 #endif
