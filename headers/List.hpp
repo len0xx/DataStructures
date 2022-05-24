@@ -139,7 +139,7 @@ public:
     }
 
     // Remove all the elements from the list
-    void clear(void) {
+    void clear(void) override {
         Node *current;
         if (counter == 1) current = head;
         else current = head->next;
