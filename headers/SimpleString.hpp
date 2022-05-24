@@ -6,7 +6,7 @@
 #ifndef _SIMPLE_STRING_H_
 #define _SIMPLE_STRING_H_
 
-// A simple string class implementation
+// A simple string class implementation based on the linked list
 class SimpleString {
 
 using Character = DS::Node<char>;
