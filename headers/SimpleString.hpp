@@ -46,20 +46,7 @@ public:
     SimpleString(const char *thestr) : SimpleString(const_cast<char*>(thestr)) { }
   
     // Destructor
-    ~SimpleString() {
-        Character *thenext, *current = head;
-
-        if (counter) {
-            while (current->next) {
-                thenext = current;
-                delete thenext;
-                current = current->next;
-                counter--;
-            }
-            delete current;
-            counter--;
-        }
-    }
+    ~SimpleString() { }
 
     // Get the length of the list
     size_t length(void) const noexcept {
@@ -69,7 +56,8 @@ public:
     // Convert SimpleString to char[]
     operator char*(void) const {
         char *result = new char[length() + 1];
-        for (size_t i = 0; i < length(); result[i] = (*this)[i], i++);
+        size_t i = 0;
+        for (i = 0; i < length(); result[i] = (*this)[i], i++);
         result[i] = '\0';
         return result;
     }
