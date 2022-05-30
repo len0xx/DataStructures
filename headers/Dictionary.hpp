@@ -53,7 +53,7 @@ public:
     // Append the element to the dictionary with key and value as arguments
     void append(std::string key, N val) {
         if (key_exists(key))
-            throw Error("An element with this key already exists");
+            throw std::runtime_error("An element with this key already exists");
 
         Node *newNode, *current;
         newNode = new Node(key, val);
@@ -100,7 +100,7 @@ public:
                 return current->next;
             }
             else
-                throw Error("Could not find the entry");
+                throw std::runtime_error("Could not find the entry");
         }
     }
 
@@ -121,7 +121,7 @@ public:
         if (current->value == val)
             return current;
         else
-            throw Error("Could not find an entry", 404);
+            throw std::runtime_error("Could not find an entry");
     }
 
     // Get the first element of the dictionary
@@ -174,7 +174,7 @@ public:
         Node *current = head;
         size_t i = 0;
         if (!(*this).length() || index >= (*this).length())
-            throw Error("Nonexistent key given");
+            throw std::runtime_error("Nonexistent key given");
 
         while (current->next) {
             if (index == i++)
@@ -189,7 +189,7 @@ public:
     N& operator[](std::string search) const {
         Node *current = head;
         if (!key_exists(search))
-            throw Error("Nonexistent key given");
+            throw std::runtime_error("Nonexistent key given");
 
         while (current->next) {
             if (search == current->key)
@@ -199,7 +199,7 @@ public:
         if (search == current->key)
             return current->value;
         else
-            throw Error("Not found");
+            throw std::runtime_error("Not found");
     }
 };
 #endif

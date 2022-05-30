@@ -45,7 +45,7 @@ public:
     // Pop the element from the beginning of the queue and return it
     K *pop(void) {
         if (!counter)
-            throw Error("The queue is empty");
+            throw std::runtime_error("The queue is empty");
         
         Node *ret = head;
         head = head->next;

@@ -67,7 +67,7 @@ public:
         Character *current = head;
         size_t i = 0;
         if (!counter || index >= counter)
-            throw Error("Nonexistent key given");
+            throw std::runtime_error("Nonexistent key given");
 
         while (current->next) {
             if (index == i++)

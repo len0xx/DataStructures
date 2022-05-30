@@ -45,7 +45,7 @@ public:
     // Pop the element from the end of the stack and return it
     K *pop(void) {
         if (!counter)
-            throw Error("The stack is empty");
+            throw std::runtime_error("The stack is empty");
             
        Node *node = head, *ret;
         while (node->next != last)

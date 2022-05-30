@@ -32,7 +32,7 @@ public:
         }
         else {
             if (exists(val))
-                throw Error("An element with this value already exists in a Tree");
+                throw std::runtime_error("An element with this value already exists in a Tree");
 
             Node *next = head, *prev;
             while (next != nullptr) {
@@ -56,7 +56,7 @@ public:
     Node *search(int val) const {
         Node *next = head;
         if (!counter)
-            throw Error("The tree is empty", 404);
+            throw std::runtime_error("The tree is empty");
             
         while(next != nullptr) {
             if (val > next->value)
@@ -66,7 +66,7 @@ public:
             else
                 return next;
         }
-        throw Error("Not found", 404);
+        throw std::runtime_error("Not found");
     }
 
     // Check if the value is present in the tree or not
@@ -74,9 +74,8 @@ public:
         try {
             search(val);
         }
-        catch (const Error e) {
-            if (e.code == 404)
-                return false;
+        catch (const std::runtime_error e) {
+            return false;
         }
         return true;
     }
@@ -86,7 +85,7 @@ public:
         Node *next = head;
 
         if (!counter)
-            throw Error("The tree is empty", 404);
+            throw std::runtime_error("The tree is empty");
 
         while (next->left != nullptr) {
             next = next->left;
@@ -99,7 +98,7 @@ public:
         Node *next = head;
 
         if (!counter)
-            throw Error("The tree is empty", 404);
+            throw std::runtime_error("The tree is empty");
 
         while (next->right != nullptr) {
             next = next->right;

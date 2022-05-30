@@ -8,19 +8,6 @@
 #ifndef _METACLASSES_H_
 #define _METACLASSES_H_
 
-// A basic error class for throwing exceptions
-class Error {
-    public:
-    std::string text = "";
-    int code = 0;
-
-    Error(std::string txt) : text {txt} { }
-
-    Error(int i) : code {i} { }
-
-    Error(std::string txt, int i) : text {txt}, code {i} { }
-};
-
 // Data structure namespace
 namespace DS {
     template <typename T>

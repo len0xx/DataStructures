@@ -110,7 +110,7 @@ public:
                 return current->next;
             }
             else
-                throw Error("Could not find the entry");
+                throw std::runtime_error("Could not find the entry");
         }
     }
 
@@ -131,7 +131,7 @@ public:
         if (current->value == val)
             return current;
         else
-            throw Error("Could not find an entry", 404);
+            throw std::runtime_error("Could not find an entry");
     }
 
     Node *get_head() const noexcept {
@@ -166,7 +166,7 @@ public:
         Node *current = List<K>::get_head();
         size_t i = 0;
         if (!counter || index >= counter)
-            throw Error("Nonexistent key given");
+            throw std::runtime_error("Nonexistent key given");
 
         while (current->next) {
             if (index == i++)
@@ -198,7 +198,7 @@ public:
         Node *current = head;
         size_t i {};
 
-        if (!counter) throw Error("The list is empty");
+        if (!counter) throw std::runtime_error("The list is empty");
 
         while (current->next) {
             if (current->value == entry)
@@ -209,7 +209,7 @@ public:
         if (current->value == entry)
             return i;
         else
-            throw Error("Could not find an entry", 404);
+            throw std::runtime_error("Could not find an entry");
     }
 };
 #endif
