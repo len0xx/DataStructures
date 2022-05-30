@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <iostream>
-#include "../headers/metaclasses.hpp"
-#include "../headers/SimpleString.hpp"
+#include "String.hpp"
 
 using namespace std;
 
@@ -9,7 +8,7 @@ int main(int argc, char **argv) {
 
     char aname[] = "Prokhor";
 
-    SimpleString myname = "TheProkhor";
+    String myname = "TheProkhor";
 
     cout << (char *) myname << endl;
 

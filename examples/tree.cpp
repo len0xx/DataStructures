@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <iostream>
-#include "../headers/metaclasses.hpp"
-#include "../headers/BinarySearchTree.hpp"
+#include "BinarySearchTree.hpp"
 
 using namespace std;
 

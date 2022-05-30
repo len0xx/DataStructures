@@ -1,13 +1,13 @@
 #include <iostream>
 #include <cstdint>
-#include "ListInterface.hpp"
+#include "metaclasses.hpp"
 
 #ifndef _LIST_H_
 #define _LIST_H_
 
 // Single-linked list data structure which implements ListInterface
 template <typename K>
-class List : public ListInterface<K> {
+class List {
 
 using Node = DS::Node<K>;
 
@@ -49,7 +49,7 @@ public:
     }
 
     // Append new element to the list with the value
-    void append(K val) override {
+    void append(K val) {
         Node *newNode, *current;
         newNode = new Node(val);
 
@@ -65,7 +65,7 @@ public:
     }
 
     // Append new element to the list with the Node
-    void append(Node *newNode) override {
+    void append(Node *newNode) {
         Node *current, *modifiedNode;
 
         modifiedNode = new Node(newNode->value);
@@ -82,7 +82,7 @@ public:
     }
 
     // Remove the element by Node and return new element at this index
-    Node *remove(Node *entry) override {
+    Node *remove(Node *entry) {
 
         if (head == entry) {
             head = entry->next;
@@ -115,12 +115,12 @@ public:
     }
 
     // Get the length of the list
-    size_t length(void) const noexcept override {
+    size_t length(void) const noexcept {
         return counter;
     }
 
     // Find a first Node with the given value
-    Node *get(K val) const override {
+    Node *get(K val) const {
         Node *current = head;
 
         while (current->next) {
@@ -134,12 +134,12 @@ public:
             throw Error("Could not find an entry", 404);
     }
 
-    Node *get_head() const noexcept override {
+    Node *get_head() const noexcept {
         return head;
     }
 
     // Remove all the elements from the list
-    void clear(void) override {
+    void clear(void) {
         Node *current;
         if (counter == 1) current = head;
         else current = head->next;
@@ -162,7 +162,7 @@ public:
     }
 
     // Indexing operator
-    K& operator[](size_t index) const override {
+    K& operator[](size_t index) const {
         Node *current = List<K>::get_head();
         size_t i = 0;
         if (!counter || index >= counter)
@@ -178,7 +178,7 @@ public:
     }
 
     // Check if the value is present in the list or not
-    bool exists(K entry) const override {
+    bool exists(K entry) const {
         auto flag = false;
         Node *current = head;
 
@@ -194,7 +194,7 @@ public:
         return flag;
     }
 
-    size_t index(K entry) const override {
+    size_t index(K entry) const {
         Node *current = head;
         size_t i {};
 

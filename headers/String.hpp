@@ -3,11 +3,11 @@
 #include <string>
 #include "metaclasses.hpp"
 
-#ifndef _SIMPLE_STRING_H_
-#define _SIMPLE_STRING_H_
+#ifndef _X_STRING_H_
+#define _X_STRING_H_
 
 // A simple string class implementation based on the linked list
-class SimpleString {
+class String {
 
 using Character = DS::Node<char>;
 
@@ -19,10 +19,10 @@ private:
 public:
 
     // Default constructor
-    SimpleString(void) = delete;
+    String(void) = delete;
 
     // Construct strings from char*
-    SimpleString(char* str) {
+    String(char* str) {
         head = last = nullptr;
         counter = 0;
         size_t i = 0;
@@ -40,20 +40,20 @@ public:
     }
 
     // Construct strings from std::string
-    SimpleString(std::string thestr) : SimpleString(thestr.c_str()) { }
+    String(std::string thestr) : String(thestr.c_str()) { }
 
     // Construct strings from const char*
-    SimpleString(const char *thestr) : SimpleString(const_cast<char*>(thestr)) { }
+    String(const char *thestr) : String(const_cast<char*>(thestr)) { }
   
     // Destructor
-    ~SimpleString() { }
+    ~String() { }
 
     // Get the length of the list
     size_t length(void) const noexcept {
         return counter;
     }
 
-    // Convert SimpleString to char[]
+    // Convert String to char[]
     operator char*(void) const {
         char *result = new char[length() + 1];
         size_t i = 0;

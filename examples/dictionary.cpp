@@ -1,12 +1,9 @@
-#include <stdio.h>
 #include <iostream>
-#include "../headers/metaclasses.hpp"
-#include "../headers/Dictionary.hpp"
+#include "Dictionary.hpp"
 
 using namespace std;
 
 int main(int argc, char **argv) {
-
     // Initialize a dictionary
     Dictionary<string> Capitals;
 

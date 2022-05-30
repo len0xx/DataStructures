@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <iostream>
-#include "../headers/metaclasses.hpp"
-#include "../headers/Stack.hpp"
-#include "../headers/Queue.hpp"
+#include "Stack.hpp"
+#include "Queue.hpp"
 
 using namespace std;
 

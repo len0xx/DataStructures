@@ -1,9 +1,8 @@
 #define CATCH_CONFIG_MAIN
-#include "../catch.hpp"
+#include "catch.hpp"
 #include <iostream>
 #include <string>
-#include "../headers/metaclasses.hpp"
-#include "../headers/Dictionary.hpp"
+#include "Dictionary.hpp"
 
 using namespace std;
 

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <iostream>
-#include "../headers/metaclasses.hpp"
-#include "../headers/List.hpp"
+#include "List.hpp"
 
 using namespace std;
 
