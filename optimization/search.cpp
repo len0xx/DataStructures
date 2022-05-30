@@ -57,7 +57,7 @@ int main() {
         }
         cout << "Binary tree search took " << sw.mark_s() << " seconds" << endl;
     }
-    catch (const Error &e) {
-        cout << "An error occurred: " << e.text << endl;
+    catch (const runtime_error &e) {
+        cout << "An error occurred: " << e.what() << endl;
     }
 }
