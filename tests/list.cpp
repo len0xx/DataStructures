@@ -49,7 +49,7 @@ TEST_CASE("List") {
     }
     
     SECTION("Trying to go beyond the length") {
-        REQUIRE_THROWS_AS(fibonacci[20], Error);
+        REQUIRE_THROWS_AS(fibonacci[20], runtime_error);
     }
     
     SECTION("Constructor and destructor") {
